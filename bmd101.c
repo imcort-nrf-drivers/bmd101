@@ -39,17 +39,17 @@ int Parse_Payload( unsigned char *payload, unsigned char pLength )
         switch(code){
             case 0x02:
                 poor_signal = payload[bytesParsed + 1];
-                NRF_LOG_INFO("POOR_SIGNAL Quality:%03d",poor_signal);
+                //NRF_LOG_INFO("POOR_SIGNAL Quality:%03d",poor_signal);
                 break;
             
             case 0x03:
                 heart_rate = payload[bytesParsed + 1];
-                NRF_LOG_INFO("HEART_RATE Value:%03d",heart_rate);
+                //NRF_LOG_INFO("HEART_RATE Value:%03d",heart_rate);
                 break;
                 
             case 0x80:
                 ecg = payload[bytesParsed] << 8 | payload[bytesParsed + 1];
-                NRF_LOG_INFO("ECG Value:%04d",ecg);
+                //NRF_LOG_INFO("ECG Value:%04d",ecg);
                 break;
             default:
                 break;
@@ -158,7 +158,6 @@ void bmd101_begin(void)
 void bmd101_sleep(void)
 {
 	
-	pinMode(BMD101_CS, OUTPUT);
 	digitalWrite(BMD101_CS, 0);
 		
 }
