@@ -38,12 +38,12 @@ int Parse_Payload( unsigned char *payload, unsigned char pLength )
             
         switch(code){
             case 0x02:
-                poor_signal = payload[bytesParsed + 1];
+                poor_signal = payload[bytesParsed];
                 //NRF_LOG_INFO("POOR_SIGNAL Quality:%03d",poor_signal);
                 break;
             
             case 0x03:
-                heart_rate = payload[bytesParsed + 1];
+                heart_rate = payload[bytesParsed];
                 //NRF_LOG_INFO("HEART_RATE Value:%03d",heart_rate);
                 break;
                 
@@ -146,10 +146,12 @@ void uart_event_handle(app_uart_evt_t *p_event)
 
 void bmd101_begin(void)
 {
-	
+	uart_init();
+    
 	pinMode(BMD101_CS, OUTPUT);
     digitalWrite(BMD101_CS, 0);
-    uart_init();
+    
+    
     
 	digitalWrite(BMD101_CS, 1);
 		
